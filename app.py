@@ -86,4 +86,4 @@ def set_session_time(time):
     app.permanent_session_lifetime = timedelta(minutes=time)
 
 if __name__ == '__main__':
-    socketio.run(app, port=4440)
+    socketio.run(app)
