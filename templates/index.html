@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    </head>
+    <body>
+        <textarea name="room" id="room" class="room" readonly></textarea>
+        <div id="inputpanel">
+            <textarea id="inputfield"></textarea>
+            <a href="javascript:;" class="enter">Enter</a>
+        </div>
+        <script>
+            const input = document.getElementById('inputfield');
+            const room = document.getElementById('room');
+
+            const user = '{{session["user"]}}';
+            const roomid = '{{session["room"]}}';
+            const time = parseInt('{{time}}');
+
+            $('docoment').ready(function() {
+                var socket = io.connect('https://chatroom-xwas.onrender.com:4440');
+                socket.emit('join', {
+                    who: user,
+                    roomid: roomid,
+                });
+                
+                
+                $('a.enter').on('click', function() {
+                    socket.emit('message', {
+                        who: user,
+                        roomid: roomid,
+                        data: input.value
+                    });
+                    input.value = '';
+                    return false;
+                });
+
+                socket.on('update', function(msg) {
+                    room.value = room.value + msg;
+                });
+
+                setTimeout(() => {
+                    window.location.reload();
+                    socket.emit('leave', {
+                        who: user,
+                        roomid: roomid,
+                    });
+                }, time);
+            });
+        </script>
+    </body>
+</html>

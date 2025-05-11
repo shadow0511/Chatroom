@@ -1,0 +1,56 @@
+* {margin: 0; padding: 0;font-family: 'Times New Roman', Times, serif; box-sizing: border-box;}
+button, a, a:focus, button:focus, img, img:focus {
+    outline: none;
+    border: none;
+}
+a {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+html, body {width: 100%;height: 100%; overflow: hidden;}
+.room {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    width: 90%;
+    height: 85%;
+    background-color: black;
+    color: white;
+    resize: none;
+    font-size: 15px;
+    overflow: auto;
+}
+#inputpanel {
+    display: flex;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    width: 90%;
+    height: 11%;
+}
+#inputfield {
+    display: block;
+    width: 78%;
+    height: 85%;
+    background-color: black;
+    color: white;
+    resize: none;
+    font-size: 15px;
+}
+a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 85%;
+    text-decoration: none;
+    background-color: black;
+    color: white;
+    font-size: 15px;
+}
